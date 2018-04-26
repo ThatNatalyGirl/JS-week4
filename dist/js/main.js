@@ -1,4 +1,4 @@
-'use strict';
+"use strict";
 
 // can be called a factory function
 //I want to make it all self contained I will then call the function on the global scope while 
@@ -8,13 +8,15 @@ var slideshow = function slideshow(time, selector) {
 	var currentSlideNumber = 0;
 	// find the element we're going to build the slideshow inside
 	var $slideshowContainer = document.querySelector(selector);
+	var $slides = $slideshowContainer.querySelectorAll(".slide");
+	var intervalID = void 0;
 
 	if (!$slideshowContainer) {
 		console.warn("Couldn't create slideshow, element not found: " + selector);
 		return false;
 	}
 
-	setInterval(function () {
+	var next = function next() {
 		//remove .active from whatever slide currently has it
 
 		//instead of doing the document you can be more specific by replacing the document with the more specific item
@@ -22,14 +24,44 @@ var slideshow = function slideshow(time, selector) {
 		//you can als do it like this but it would be more work for the browser
 		//let $active = document.querySelector(selector +' .active')
 		if ($active) $active.classList.remove('active');
-	}, time);
+
+		currentSlideNumber++;
+		//check to make sure currentSlideNumber didn't exceed number of current slides
+		if (currentSlideNumber === $slides.length) {
+			currentSlideNumber = 0;
+		}
+
+		//add .active to slide referenced by currentSlideNumber
+
+		$slides[currentSlideNumber].classList.add('active');
+		//another way to do it!
+		//$slideshowContainer.children[currentSlideNumber].classList.add('active')
+	};
+
+	var prev = function prev() {};
+
+	var jump = function jump(slideNum) {};
+
+	var stop = function stop() {
+		clearInterval(intervalID);
+	};
+
+	var start = function start() {
+		stop();
+		//setInterval is a build in thing that you give the parameter of a function and somehting we are giving it the function name and then the parameter of time
+		intervalID = setInterval(next, time);
+	};
+
+	start();
 
 	return {
 		// publicly accessible stuff goes here
+		next: next,
+		stop: stop,
+		start: start
+
 	};
 };
-
-var mySlideshow1 = slideshow(3000, ".slideshow1");
 
 //so what we're doing is creating something like .play or .innerhtml it has something already built into the code. We're making things like .play outselves so we can give that to whatever coder is using this after and they can use it. They don't care how it works. They just care that they can use it. It allows developers to trust developers at the next level deeper.
 
@@ -40,7 +72,7 @@ var mySlideshow1 = slideshow(3000, ".slideshow1");
 //SO I think I'm still confused on how the function is becoming an object. I see that we're returning the function as an object item now and it just becomes an object that can be called
 //############################################
 
-
+//setInterval is a build in thing that you give the parameter of a function and somehting we are giving it the function name and then the parameter of time
 //setInterval for every 3 seconds 
 //remove .active from whichever one has it
 //add .active to the current slide that we will define in the variable. current slide num

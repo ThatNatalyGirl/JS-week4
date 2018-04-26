@@ -17,8 +17,22 @@
 			<img src="dist/img/sunset3.jpg" alt="sunset image" class="slide ">
 			<img src="dist/img/sunset4.jpg" alt="sunset image" class="slide ">
 		</div>
-		
+
+		<button class="prev">Previous</button>
+		<button class="stop">Stop</button>
+		<button class="play">Play</button>
+		<button class="next">Next</button>
+		<button class="jump">Jump to slide 3</button>
+
 		<script src="dist/js/main.js"></script>
+
+		<script>
+			let mySlideshow1 = slideshow(3000, ".slideshow1")
+			
+			document.querySelector('.slideshow1').onclick = function(){
+				mySlideshow1.stop()
+			}
+		</script>
 
 	</body>
 </html>

@@ -7,14 +7,15 @@ let slideshow = function(time, selector) {
 	let currentSlideNumber = 0;
 	// find the element we're going to build the slideshow inside
 	let $slideshowContainer = document.querySelector(selector);
+	let $slides = $slideshowContainer.querySelectorAll(".slide");
+	let intervalID;
 
 	if (!$slideshowContainer) {
 		console.warn("Couldn't create slideshow, element not found: " + selector)
 		return false
 	}
 
-
-	setInterval(function() {
+	let next = function() {
 		//remove .active from whatever slide currently has it
 
 		//instead of doing the document you can be more specific by replacing the document with the more specific item
@@ -23,16 +24,50 @@ let slideshow = function(time, selector) {
 		//let $active = document.querySelector(selector +' .active')
 		if ($active)$active.classList.remove('active');
 
-	}, time)
+		currentSlideNumber++;
+		//check to make sure currentSlideNumber didn't exceed number of current slides
+		if (currentSlideNumber === $slides.length) {
+			currentSlideNumber = 0;
+		}
+
+		//add .active to slide referenced by currentSlideNumber
+		
+		$slides[currentSlideNumber].classList.add('active');
+		//another way to do it!
+		//$slideshowContainer.children[currentSlideNumber].classList.add('active')
+
+	}
+
+	let prev = function () {
+
+	}
+
+	let jump = function (slideNum) {
+		
+	}
+
+	let stop = function () {
+		clearInterval(intervalID)
+	}
+
+	let start = function (){
+		stop()
+	//setInterval is a build in thing that you give the parameter of a function and somehting we are giving it the function name and then the parameter of time
+		intervalID = setInterval(next, time)
+	}
 	
+	start()
 
 	return {
 		// publicly accessible stuff goes here
+		next: next,
+		stop: stop,
+		start: start
+
 	}
 
 }
 
-let mySlideshow1 = slideshow(3000, ".slideshow1")
 
 
 //so what we're doing is creating something like .play or .innerhtml it has something already built into the code. We're making things like .play outselves so we can give that to whatever coder is using this after and they can use it. They don't care how it works. They just care that they can use it. It allows developers to trust developers at the next level deeper.
@@ -44,7 +79,7 @@ let mySlideshow1 = slideshow(3000, ".slideshow1")
 //SO I think I'm still confused on how the function is becoming an object. I see that we're returning the function as an object item now and it just becomes an object that can be called
 //############################################
 
-
+	//setInterval is a build in thing that you give the parameter of a function and somehting we are giving it the function name and then the parameter of time
 //setInterval for every 3 seconds 
 //remove .active from whichever one has it
 //add .active to the current slide that we will define in the variable. current slide num
