@@ -12,25 +12,50 @@
 	<body>
 		
 		<div class="slideshow slideshow1">
-			<img src="dist/img/sunset1.jpg" alt="sunset image" class="slide active">
-			<img src="dist/img/sunset2.jpg" alt="sunset image" class="slide ">
-			<img src="dist/img/sunset3.jpg" alt="sunset image" class="slide ">
-			<img src="dist/img/sunset4.jpg" alt="sunset image" class="slide ">
+			<img src="dist/img/groot.jpg" alt="groot image" class="slide active">
+			<img src="dist/img/groot2.jpg" alt="groot image" class="slide ">
+			<img src="dist/img/groot3.png" alt="groot image" class="slide ">
+			<img src="dist/img/groot4.png" alt="groot image" class="slide ">
 		</div>
 
 		<button class="prev">Previous</button>
 		<button class="stop">Stop</button>
 		<button class="play">Play</button>
 		<button class="next">Next</button>
-		<button class="jump">Jump to slide 3</button>
+		<br>
+		<button class="jump0">Jump to slide 0</button>
+		<button class="jump1">Jump to slide 1</button>
+		<button class="jump2">Jump to slide 2</button>
+		<button class="jump3">Jump to slide 3</button>
 
 		<script src="dist/js/main.js"></script>
 
 		<script>
 			let mySlideshow1 = slideshow(3000, ".slideshow1")
 			
-			document.querySelector('.slideshow1').onclick = function(){
+			document.querySelector(".prev").onclick = function() {
+				mySlideshow1.prev()
+			}
+			document.querySelector(".stop").onclick = function() {
 				mySlideshow1.stop()
+			}
+			document.querySelector(".start").onclick = function() {
+				mySlideshow1.start()
+			}
+			document.querySelector(".next").onclick = function() {
+				mySlideshow1.next()
+			}
+			document.querySelector(".jump0").onclick = function() {
+				mySlideshow1.jump(0)
+			}
+			document.querySelector(".jump1").onclick = function() {
+				mySlideshow1.jump(1)
+			}
+			document.querySelector(".jump2").onclick = function() {
+				mySlideshow1.jump(2)
+			}
+			document.querySelector(".jump3").onclick = function() {
+				mySlideshow1.jump(3)
 			}
 		</script>
 

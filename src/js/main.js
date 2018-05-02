@@ -4,10 +4,11 @@
 
 let slideshow = function(time, selector) {
 
-	let currentSlideNumber = 0;
+	
 	// find the element we're going to build the slideshow inside
 	let $slideshowContainer = document.querySelector(selector);
 	let $slides = $slideshowContainer.querySelectorAll(".slide");
+	let currentSlideNumber = 0;
 	let intervalID;
 
 	if (!$slideshowContainer) {
@@ -20,9 +21,9 @@ let slideshow = function(time, selector) {
 
 		//instead of doing the document you can be more specific by replacing the document with the more specific item
 		let $active = $slideshowContainer.querySelector('.active');
-		//you can als do it like this but it would be more work for the browser
+		//you can also do it like this but it would be more work for the browser
 		//let $active = document.querySelector(selector +' .active')
-		if ($active)$active.classList.remove('active');
+		if ($active) $active.classList.remove('active');
 
 		currentSlideNumber++;
 		//check to make sure currentSlideNumber didn't exceed number of current slides
@@ -53,17 +54,18 @@ let slideshow = function(time, selector) {
 	let start = function (){
 		stop()
 	//setInterval is a build in thing that you give the parameter of a function and somehting we are giving it the function name and then the parameter of time
-		intervalID = setInterval(next, time)
+		intervalID = setInterval(next, time);
 	}
 	
-	start()
+	start();
 
 	return {
 		// publicly accessible stuff goes here
 		next: next,
 		stop: stop,
 		start: start
-
+		prev: prev,
+		jump: jump
 	}
 
 }
@@ -100,7 +102,7 @@ let slideshow = function(time, selector) {
 
 
 //If you do everything on the global scope then there are just a ton of variables hanging out
-//we're going to start to put the items inside the scope that we are. 
+//we're going to start to put the items inside the scope that we are in. 
 //scoping out queries for elements. so we can call the element more specifically
 //you don't want such generic names in the outside scope and 
 
