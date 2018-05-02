@@ -24,23 +24,57 @@ TABLE OF CONTENTS:
 }
 
 body {
-	background: #ccc;
+	background: url(../img/bg.jpg);
+	background-repeat: round;
+	font-family: 'Gloria Hallelujah', cursive;
+	margin: 0 5%;
 }
 
+header{
+	font-size: 2.4em;
+	text-align: center;
+	padding: 5% 40px;
 
-
+	h1{
+		color: #a69067;
+		text-shadow:0 1px #2e3104,
+					-1px 0 #7c6c17,
+					-1px 2px #2e3104,
+					-2px 1px #7c6c17,
+					-2px 3px #2e3104,
+					-3px 2px #7c6c17,
+					-3px 4px #2e3104,
+					-4px 3px #7c6c17,
+					-4px 5px #2e3104,
+					-5px 4px #7c6c17,
+					-5px 6px #2e3104,
+					-6px 5px #7c6c17,
+					-6px 7px #2e3104,
+					-7px 6px #7c6c17,
+					-7px 8px #2e3104,
+					-8px 7px #7c6c17; 
+	}
+}
+//https://css-tricks.com/almanac/properties/t/text-shadow/
 
 /* 2. Content ================================= */
+.wrapper{
+	display: flex;
+	flex-direction: column;
+	border: 15px solid #7c6c17;
+	height: auto;
+	width: 100%;
+}
 
 .slideshow {
 	position: relative;
 	width: 100%;
-	height: 0;
+	height: 100%;
 	padding-bottom: 56.25%;
 	.slide {
 		position: absolute;
 		width: 100%;
-		height: auto;
+		height: 100%;
 		opacity: 0;
 		z-index: 1;
 		transition: 0.5s;
@@ -50,3 +84,44 @@ body {
 		}
 	}
 }
+
+.buttons{
+	background: #7c6c17;
+	display: flex;
+	justify-content: space-around;
+	flex-wrap: wrap;
+
+	button{
+		font-family: 'Gloria Hallelujah', cursive;
+		font-size: 1em;
+		border: 3px solid #a69067;
+		border-radius: 10px;
+		background: #1d78cb;
+
+		&:hover{
+			background: #00b29c;
+		}
+	}
+}
+
+@media screen and (min-width: 678px) {
+	h1{
+		font-size: 5em
+	}
+
+	.wrapper{
+		border: 25px solid #7c6c17;
+	}
+
+	.buttons{
+		button{
+			font-size: 4em; 
+		}
+	}
+}
+
+
+
+
+
+
