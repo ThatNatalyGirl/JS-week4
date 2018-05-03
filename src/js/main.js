@@ -10,10 +10,6 @@ let slideshow = function(time, selector) {
 	let $slides = $slideshowContainer.querySelectorAll(".slide");
 	let currentSlideNumber = 0;
 	let intervalID;
-	//instead of doing the document you can be more specific by replacing the document with the more specific item
-	let $active = $slideshowContainer.querySelector('.active');
-		//you can also do it like this but it would be more work for the browser
-		//let $active = document.querySelector(selector +' .active')
 
 	if (!$slideshowContainer) {
 		console.warn("Couldn't create slideshow, element not found: " + selector)
@@ -21,7 +17,12 @@ let slideshow = function(time, selector) {
 	}
 
 	let next = function() {
+		//instead of doing the document you can be more specific by replacing the document with the more specific item
+		let $active = $slideshowContainer.querySelector('.active');
+		//you can also do it like this but it would be more work for the browser
+		//let $active = document.querySelector(selector +' .active')
 		//remove .active from whatever slide currently has it
+
 		if ($active) $active.classList.remove('active');
 
 		currentSlideNumber++;
@@ -38,26 +39,28 @@ let slideshow = function(time, selector) {
 
 	}
 
-	let prev = function () {
-		if ($active) $active.classList.remove('active');
-		currentSlideNumber--;
-		if (currentSlideNumber < 0) {
-			currentSlideNumber = $slides.length - 1;
-		}	
-		$slides[currentSlideNumber].classList.add('active');
-	}
+		let prev = function () {
+			let $active = $slideshowContainer.querySelector('.active');
 
-	let jump0 = function (slideNum) {
-		if ($active) $active.classList.remove('active');
+			if ($active) $active.classList.remove('active');
 
-		currentSlideNumber--;
+			currentSlideNumber--;
 
-		if (currentSlideNumber < 0) {
-			currentSlideNumber = $slides.length - 1;
-		}
-		$slides[currentSlideNumber].classList.add('active');
+			if (currentSlideNumber < 0) {
+				currentSlideNumber = $slides.length - 1;
+			}
+
+		//add .active to slide referenced by currentSlideNumber
 		
+		$slides[currentSlideNumber].classList.add('active');
 	}
+
+	let jump = function (slideNum) {
+		let $active = $slideshowContainer.querySelector('.active');
+		if ($active) $active.classList.remove('active');
+		currentSlideNumber = slideNum;
+		$slides[ currentSlideNumber ].classList.add("active")
+    }
 
 	let stop = function () {
 		clearInterval(intervalID)

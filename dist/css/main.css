@@ -128,6 +128,7 @@ header h1 {
 	border: 3px solid #a69067;
 	border-radius: 10px;
 	background: #1d78cb;
+	margin: 10px 0;
 }
 
 .buttons button:hover {
@@ -135,11 +136,23 @@ header h1 {
 }
 
 .buttons button:focus {
-	outline: blue;
-	background: #00b29c;
+	outline: 0;
+	background: #a69067;
 }
 
-@media screen and (min-width: 678px) {
+@media screen and (min-width: 768px) {
+	h1 {
+		font-size: 2.5em;
+	}
+	.wrapper {
+		border: 15px solid #7c6c17;
+	}
+	.buttons button {
+		font-size: 2em;
+	}
+}
+
+@media screen and (min-width: 1080px) {
 	h1 {
 		font-size: 5em;
 	}
