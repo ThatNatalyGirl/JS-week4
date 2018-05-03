@@ -142,25 +142,25 @@ header h1 {
 
 @media screen and (min-width: 768px) {
 	h1 {
-		font-size: 2.5em;
+		font-size: 2.3em;
 	}
 	.wrapper {
 		border: 15px solid #7c6c17;
 	}
 	.buttons button {
-		font-size: 2em;
+		font-size: 1.1em;
 	}
 }
 
 @media screen and (min-width: 1080px) {
 	h1 {
-		font-size: 5em;
+		font-size: 3.3em;
 	}
 	.wrapper {
 		border: 25px solid #7c6c17;
 	}
 	.buttons button {
-		font-size: 4em;
+		font-size: 1.7em;
 	}
 }
 
