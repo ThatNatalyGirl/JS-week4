@@ -42,7 +42,6 @@ var slideshow = function slideshow(time, selector) {
 		var $active = $slideshowContainer.querySelector('.active');
 
 		if ($active) $active.classList.remove('active');
-
 		currentSlideNumber--;
 
 		if (currentSlideNumber < 0) {
@@ -56,6 +55,7 @@ var slideshow = function slideshow(time, selector) {
 
 	var jump = function jump(slideNum) {
 		var $active = $slideshowContainer.querySelector('.active');
+
 		if ($active) $active.classList.remove('active');
 		currentSlideNumber = slideNum;
 		$slides[currentSlideNumber].classList.add("active");

@@ -39,27 +39,27 @@ let slideshow = function(time, selector) {
 
 	}
 
-		let prev = function () {
-			let $active = $slideshowContainer.querySelector('.active');
+	let prev = function () {
+		let $active = $slideshowContainer.querySelector('.active');
 
-			if ($active) $active.classList.remove('active');
-
+		if ($active) $active.classList.remove('active');
 			currentSlideNumber--;
 
-			if (currentSlideNumber < 0) {
-				currentSlideNumber = $slides.length - 1;
-			}
+		if (currentSlideNumber < 0) {
+			currentSlideNumber = $slides.length - 1;
+		}
 
-		//add .active to slide referenced by currentSlideNumber
-		
-		$slides[currentSlideNumber].classList.add('active');
+	//add .active to slide referenced by currentSlideNumber
+	
+	$slides[currentSlideNumber].classList.add('active');
 	}
 
 	let jump = function (slideNum) {
 		let $active = $slideshowContainer.querySelector('.active');
+		
 		if ($active) $active.classList.remove('active');
-		currentSlideNumber = slideNum;
-		$slides[ currentSlideNumber ].classList.add("active")
+			currentSlideNumber = slideNum;
+			$slides[ currentSlideNumber ].classList.add("active")
     }
 
 	let stop = function () {
