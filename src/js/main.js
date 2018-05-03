@@ -16,50 +16,51 @@ let slideshow = function(time, selector) {
 		return false
 	}
 
-	let next = function() {
-		//instead of doing the document you can be more specific by replacing the document with the more specific item
+	let hideOldSlide = function(){
+				//instead of doing the document you can be more specific by replacing the document with the more specific item
 		let $active = $slideshowContainer.querySelector('.active');
 		//you can also do it like this but it would be more work for the browser
 		//let $active = document.querySelector(selector +' .active')
 		//remove .active from whatever slide currently has it
-
 		if ($active) $active.classList.remove('active');
+	}
+
+	let showNewSlide = function(){
+		//add .active to slide referenced by currentSlideNumber
+		
+		$slides[currentSlideNumber].classList.add('active');
+		//another way to do it!
+		//$slideshowContainer.children[currentSlideNumber].classList.add('active')
+	}
+
+	let next = function() {
+		hideOldSlide()
 
 		currentSlideNumber++;
 		//check to make sure currentSlideNumber didn't exceed number of current slides
 		if (currentSlideNumber === $slides.length) {
 			currentSlideNumber = 0;
 		}
-
-		//add .active to slide referenced by currentSlideNumber
-		
-		$slides[currentSlideNumber].classList.add('active');
-		//another way to do it!
-		//$slideshowContainer.children[currentSlideNumber].classList.add('active')
-
+		showNewSlide()
 	}
 
 	let prev = function () {
-		let $active = $slideshowContainer.querySelector('.active');
+		hideOldSlide()
 
-		if ($active) $active.classList.remove('active');
-			currentSlideNumber--;
+		currentSlideNumber--;
 
 		if (currentSlideNumber < 0) {
 			currentSlideNumber = $slides.length - 1;
 		}
-
-	//add .active to slide referenced by currentSlideNumber
-	
-	$slides[currentSlideNumber].classList.add('active');
+		showNewSlide()
 	}
 
 	let jump = function (slideNum) {
-		let $active = $slideshowContainer.querySelector('.active');
+		hideOldSlide();
 		
-		if ($active) $active.classList.remove('active');
-			currentSlideNumber = slideNum;
-			$slides[ currentSlideNumber ].classList.add("active")
+		currentSlideNumber = slideNum;
+		
+		showNewSlide()
     }
 
 	let stop = function () {
