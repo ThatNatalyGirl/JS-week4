@@ -10,6 +10,10 @@ let slideshow = function(time, selector) {
 	let $slides = $slideshowContainer.querySelectorAll(".slide");
 	let currentSlideNumber = 0;
 	let intervalID;
+	//instead of doing the document you can be more specific by replacing the document with the more specific item
+	let $active = $slideshowContainer.querySelector('.active');
+		//you can also do it like this but it would be more work for the browser
+		//let $active = document.querySelector(selector +' .active')
 
 	if (!$slideshowContainer) {
 		console.warn("Couldn't create slideshow, element not found: " + selector)
@@ -18,11 +22,6 @@ let slideshow = function(time, selector) {
 
 	let next = function() {
 		//remove .active from whatever slide currently has it
-
-		//instead of doing the document you can be more specific by replacing the document with the more specific item
-		let $active = $slideshowContainer.querySelector('.active');
-		//you can also do it like this but it would be more work for the browser
-		//let $active = document.querySelector(selector +' .active')
 		if ($active) $active.classList.remove('active');
 
 		currentSlideNumber++;
@@ -40,10 +39,23 @@ let slideshow = function(time, selector) {
 	}
 
 	let prev = function () {
-
+		if ($active) $active.classList.remove('active');
+		currentSlideNumber--;
+		if (currentSlideNumber < 0) {
+			currentSlideNumber = $slides.length - 1;
+		}	
+		$slides[currentSlideNumber].classList.add('active');
 	}
 
-	let jump = function (slideNum) {
+	let jump0 = function (slideNum) {
+		if ($active) $active.classList.remove('active');
+
+		currentSlideNumber--;
+
+		if (currentSlideNumber < 0) {
+			currentSlideNumber = $slides.length - 1;
+		}
+		$slides[currentSlideNumber].classList.add('active');
 		
 	}
 
@@ -53,7 +65,7 @@ let slideshow = function(time, selector) {
 
 	let start = function (){
 		stop()
-	//setInterval is a build in thing that you give the parameter of a function and somehting we are giving it the function name and then the parameter of time
+	//setInterval is a build in thing that you give the parameter of a function and something we are giving it the function name and then the parameter of time
 		intervalID = setInterval(next, time);
 	}
 	
@@ -63,7 +75,7 @@ let slideshow = function(time, selector) {
 		// publicly accessible stuff goes here
 		next: next,
 		stop: stop,
-		start: start
+		start: start,
 		prev: prev,
 		jump: jump
 	}

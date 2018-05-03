@@ -5,11 +5,15 @@
 
 var slideshow = function slideshow(time, selector) {
 
-	var currentSlideNumber = 0;
 	// find the element we're going to build the slideshow inside
 	var $slideshowContainer = document.querySelector(selector);
 	var $slides = $slideshowContainer.querySelectorAll(".slide");
+	var currentSlideNumber = 0;
 	var intervalID = void 0;
+	//instead of doing the document you can be more specific by replacing the document with the more specific item
+	var $active = $slideshowContainer.querySelector('.active');
+	//you can also do it like this but it would be more work for the browser
+	//let $active = document.querySelector(selector +' .active')
 
 	if (!$slideshowContainer) {
 		console.warn("Couldn't create slideshow, element not found: " + selector);
@@ -18,11 +22,6 @@ var slideshow = function slideshow(time, selector) {
 
 	var next = function next() {
 		//remove .active from whatever slide currently has it
-
-		//instead of doing the document you can be more specific by replacing the document with the more specific item
-		var $active = $slideshowContainer.querySelector('.active');
-		//you can als do it like this but it would be more work for the browser
-		//let $active = document.querySelector(selector +' .active')
 		if ($active) $active.classList.remove('active');
 
 		currentSlideNumber++;
@@ -38,9 +37,25 @@ var slideshow = function slideshow(time, selector) {
 		//$slideshowContainer.children[currentSlideNumber].classList.add('active')
 	};
 
-	var prev = function prev() {};
+	var prev = function prev() {
+		if ($active) $active.classList.remove('active');
+		currentSlideNumber--;
+		if (currentSlideNumber < 0) {
+			currentSlideNumber = $slides.length - 1;
+		}
+		$slides[currentSlideNumber].classList.add('active');
+	};
 
-	var jump = function jump(slideNum) {};
+	var jump0 = function jump0(slideNum) {
+		if ($active) $active.classList.remove('active');
+
+		currentSlideNumber--;
+
+		if (currentSlideNumber < 0) {
+			currentSlideNumber = $slides.length - 1;
+		}
+		$slides[currentSlideNumber].classList.add('active');
+	};
 
 	var stop = function stop() {
 		clearInterval(intervalID);
@@ -48,7 +63,7 @@ var slideshow = function slideshow(time, selector) {
 
 	var start = function start() {
 		stop();
-		//setInterval is a build in thing that you give the parameter of a function and somehting we are giving it the function name and then the parameter of time
+		//setInterval is a build in thing that you give the parameter of a function and something we are giving it the function name and then the parameter of time
 		intervalID = setInterval(next, time);
 	};
 
@@ -58,8 +73,9 @@ var slideshow = function slideshow(time, selector) {
 		// publicly accessible stuff goes here
 		next: next,
 		stop: stop,
-		start: start
-
+		start: start,
+		prev: prev,
+		jump: jump
 	};
 };
 
@@ -88,7 +104,7 @@ var slideshow = function slideshow(time, selector) {
 
 
 //If you do everything on the global scope then there are just a ton of variables hanging out
-//we're going to start to put the items inside the scope that we are. 
+//we're going to start to put the items inside the scope that we are in. 
 //scoping out queries for elements. so we can call the element more specifically
 //you don't want such generic names in the outside scope and 
 
