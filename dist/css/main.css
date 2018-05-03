@@ -92,8 +92,6 @@ header h1 {
 
 /* 2. Content ================================= */
 .wrapper {
-	display: flex;
-	flex-direction: column;
 	border: 15px solid #7c6c17;
 	height: auto;
 	width: 100%;
@@ -122,9 +120,6 @@ header h1 {
 
 .buttons {
 	background: #7c6c17;
-	display: flex;
-	justify-content: space-around;
-	flex-wrap: wrap;
 }
 
 .buttons button {
@@ -136,6 +131,11 @@ header h1 {
 }
 
 .buttons button:hover {
+	background: #00b29c;
+}
+
+.buttons button:focus {
+	outline: blue;
 	background: #00b29c;
 }
 

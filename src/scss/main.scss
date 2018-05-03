@@ -59,8 +59,6 @@ header{
 
 /* 2. Content ================================= */
 .wrapper{
-	display: flex;
-	flex-direction: column;
 	border: 15px solid #7c6c17;
 	height: auto;
 	width: 100%;
@@ -87,9 +85,6 @@ header{
 
 .buttons{
 	background: #7c6c17;
-	display: flex;
-	justify-content: space-around;
-	flex-wrap: wrap;
 
 	button{
 		font-family: 'Gloria Hallelujah', cursive;
@@ -99,6 +94,11 @@ header{
 		background: #1d78cb;
 
 		&:hover{
+			background: #00b29c;
+		}
+
+		&:focus{
+			outline: blue;
 			background: #00b29c;
 		}
 	}
